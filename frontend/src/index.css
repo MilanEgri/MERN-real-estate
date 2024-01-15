@@ -1,6 +1,28 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "Open Sans", sans-serif;
+
 }
 
-
+header{
+  background-color: #EE5E4E;
+}
+nav{
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+a{
+  text-decoration: none;
+}
+input{
+  border: none;
+}
+input:focus{
+  outline: none;
+}
+.navbar-sign-in-up{
+  display: flex;
+  gap: 1rem;
+}
