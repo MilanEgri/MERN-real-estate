@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaSearch } from 'react-icons/fa'
 const Navbar = () => {
   const [isLogined, setIsLogined] = useState(false);
   return (
@@ -8,7 +9,10 @@ const Navbar = () => {
         <Link to="/">
           <span>Home</span>
         </Link>
-        <input type="text" placeholder="Search..." />
+        <form>
+          <input type="text" placeholder="Search..." />
+          <FaSearch style={{"color":"#999"}} />
+        </form>
         {isLogined ? (
           <span>Sign out</span>
         ) : (
