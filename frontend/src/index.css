@@ -3,10 +3,14 @@ body {
   padding: 0;
   font-family: "Open Sans", sans-serif;
   color: #333;
+  background-color: #dddcd4;
 }
 
 header{
   background-color: #EE5E4E;
+}
+button{
+  border:none
 }
 nav{
   padding: 1rem 2.5rem;
@@ -42,4 +46,49 @@ input:focus{
 .navbar-sign-in-up{
   display: flex;
   gap: 1.5rem;
+}
+.sign-up{
+  padding: 2.5rem;
+}
+.sign-up h1{
+  text-align: center;
+  font-weight: 600;
+}
+.sign-up p{
+  text-align: center;
+}
+.sign-up form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.sign-up form input{
+  background-color: #fff;
+  width: 280px;
+  padding: 0 10px;
+  height: 30px;
+  border-radius: 6px;
+}
+.sign-up form button{
+  width: 300px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.sign-up-sign-up-button{
+  border: 2px solid #5745A0;
+  background-color: rgba(87, 69, 160, 0.6);
+  color: #fff;
+}
+.sign-up-sign-up-button:hover{
+  box-shadow: 0 0 5px rgba(87, 69, 160, 1);
+  text-shadow: 0 0 5px rgba(87, 69, 160, 1);
+  color: #5745A0;
+  background-color: rgba(87, 69, 160, 0.2);
+  transition: all 0.3s ease 0s;
+}
+.sign-up p a{
+  color: #1d4ed8;
+  text-decoration: underline;
 }
