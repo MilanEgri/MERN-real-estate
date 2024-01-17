@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa'
+import { Context } from "../App";
 const Navbar = () => {
-  const [isLogined, setIsLogined] = useState(false);
+  const [user, setUser] = useContext(Context);
+  useEffect(() => {
+    const id = localStorage.getItem('id');
+    setUser(id)
+  }, [])
+  const deleteCookie = (name) => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+  };
+  function signOut() {
+    localStorage.removeItem('id');
+    setUser(null)
+    deleteCookie('token');
+  }
   return (
     <header>
       <nav>
@@ -11,10 +24,15 @@ const Navbar = () => {
         </Link>
         <form>
           <input type="text" placeholder="Search..." />
-          <FaSearch style={{"color":"#999"}} />
+          <FaSearch style={{ "color": "#999" }} />
         </form>
-        {isLogined ? (
-          <span>Sign out</span>
+        {user ? (
+          <div className="navbar-sign-in-up">
+            <span className="sign-out" onClick={signOut}>Sign out</span>
+            <Link to="profile">
+              <span>profile</span>
+            </Link>
+          </div>
         ) : (
           <div className="navbar-sign-in-up">
             <Link to="sign-in">

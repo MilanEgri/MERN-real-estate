@@ -33,8 +33,9 @@ app.post("/signin", async (req, res) => {
       return res.status(401).json("invalid crendentials")
     }
     if (bcrypt.compareSync(user.password, saved.password)) {
-      const token = jwt.sign({ id: saved._id},process.env.JWT_SECRET)
-      return res.cookie('token',token,{httponly: true,expires: new  Date(Date.now() + 24* 60 * 60 + 1000)}).status(200).json(saved.username)
+      const token = jwt.sign({ id: saved._id }, process.env.JWT_SECRET)
+      return res.cookie('token', token, { httponly: true, expires: new Date(Date.now() + 24 * 60 * 60 + 1000) })
+        .status(200).json({ 'id': saved._id,  })
     }
     else {
       console.log(user.password)

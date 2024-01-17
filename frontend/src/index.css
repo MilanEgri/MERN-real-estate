@@ -133,3 +133,10 @@ input:focus {
   background-color: rgba(46,184,134,0.4);
   border: 2px solid #2EB886;
 }
+.sign-out{
+  color: #333;
+}
+.sign-out:hover{
+  color: #fff;
+  cursor: pointer;
+}
