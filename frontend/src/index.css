@@ -6,89 +6,130 @@ body {
   background-color: #dddcd4;
 }
 
-header{
+header {
   background-color: #EE5E4E;
 }
-button{
-  border:none
+
+button {
+  border: none
 }
-nav{
+
+nav {
   padding: 1rem 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-nav a:hover{
+
+nav a:hover {
   color: #fff;
 }
-a{
+
+a {
   text-decoration: none;
   color: #333;
 }
-input{
+
+input {
   border: none;
   background-color: transparent;
-  
+
 }
-nav form{
+
+nav form {
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 8px;
   padding: .5rem;
   display: flex;
   align-items: center;
 }
-nav form input{
+
+nav form input {
   border-radius: 8px;
 }
-input:focus{
+
+input:focus {
   outline: none;
 }
-.navbar-sign-in-up{
+
+.navbar-sign-in-up {
   display: flex;
   gap: 1.5rem;
 }
-.sign-up{
+
+.sign-up {
+  position: relative;
   padding: 2.5rem;
 }
-.sign-up h1{
+
+.sign-up h1 {
   text-align: center;
   font-weight: 600;
 }
-.sign-up p{
+
+.sign-up p {
   text-align: center;
 }
-.sign-up form{
+
+.sign-up form {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
-.sign-up form input{
+
+.sign-up form input {
   background-color: #fff;
   width: 280px;
   padding: 0 10px;
   height: 30px;
   border-radius: 6px;
 }
-.sign-up form button{
+
+.sign-up form button {
   width: 300px;
   height: 30px;
   border-radius: 6px;
   cursor: pointer;
 }
-.sign-up-sign-up-button{
+
+.sign-up-sign-up-button {
   border: 2px solid #5745A0;
   background-color: rgba(87, 69, 160, 0.6);
   color: #fff;
 }
-.sign-up-sign-up-button:hover{
+
+.sign-up-sign-up-button:hover {
   box-shadow: 0 0 5px rgba(87, 69, 160, 1);
   text-shadow: 0 0 5px rgba(87, 69, 160, 1);
   color: #5745A0;
   background-color: rgba(87, 69, 160, 0.2);
   transition: all 0.3s ease 0s;
 }
-.sign-up p a{
+
+.sign-up p a {
   color: #1d4ed8;
   text-decoration: underline;
+}
+
+.signup-alert {
+  position: absolute;
+  padding: 20px;
+  min-width: 600px;
+  color: rgb(0, 0, 0);
+  margin-bottom: 15px;
+  text-align: center;
+  border-radius: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1%;
+}
+
+.signup-error {
+  background-color: rgba(244, 67, 54, 0.3);
+  border: 2px solid #f44336;
+}
+.signup-succes{
+  background-color: rgba(46,184,134,0.4);
+  border: 2px solid #2EB886;
 }
