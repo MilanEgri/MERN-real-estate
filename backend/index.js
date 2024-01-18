@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const UserModel = require("./models/user.model")
+const ListingModel = require("./models/listing.model")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require("dotenv").config();
@@ -14,7 +15,27 @@ if (!MONGO_URL) {
 
 const app = express()
 app.use(express.json());
-
+app.get("/user/:id", async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const user = await UserModel.findOne({ "_id": userId});
+    if (!user) {
+      return res.status(401).json("invalid crendentials")
+    }
+    return res.status(201).json("succes");
+  } catch (err) {
+    return res.status(500).json(err.message)
+  }
+})
+app.post("/create",async(req,res) =>{
+  const listing = req.body;
+  try {
+    const saved = await ListingModel.create(listing);
+    return res.status(201).json("succes");
+  } catch (err) {
+    return res.status(500).json(err.message)
+  }
+})
 app.post("/signup", async (req, res) => {
   const newUser = req.body;
   newUser.password = bcrypt.hashSync(newUser.password, 12)
@@ -35,7 +56,7 @@ app.post("/signin", async (req, res) => {
     if (bcrypt.compareSync(user.password, saved.password)) {
       const token = jwt.sign({ id: saved._id }, process.env.JWT_SECRET)
       return res.cookie('token', token, { httponly: true, expires: new Date(Date.now() + 24 * 60 * 60 + 1000) })
-        .status(200).json({ 'id': saved._id,  })
+        .status(200).json({ 'id': saved._id, })
     }
     else {
       console.log(user.password)
