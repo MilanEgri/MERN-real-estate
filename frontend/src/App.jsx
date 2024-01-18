@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import React, { useState } from "react";
+import Create from "./pages/Create";
 
 export const Context = React.createContext();
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/create" element={<Create/>}/>
       </Routes>
       </Context.Provider>
     </BrowserRouter>
