@@ -31,7 +31,7 @@ app.post("/create",async(req,res) =>{
   const listing = req.body;
   try {
     const saved = await ListingModel.create(listing);
-    return res.status(201).json("succes");
+    return res.status(201).json(saved._id);
   } catch (err) {
     return res.status(500).json(err.message)
   }
