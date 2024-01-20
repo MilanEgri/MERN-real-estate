@@ -15,6 +15,18 @@ if (!MONGO_URL) {
 
 const app = express()
 app.use(express.json());
+app.get("/listings/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const listing = await ListingModel.findOne({ "_id": id});
+    if (!listing) {
+      return res.status(501).json("listing not exist")
+    }
+    return res.status(200).json(listing);
+  } catch (err) {
+    return res.status(500).json(err.message)
+  }
+})
 app.get("/user/:id", async (req, res) => {
   const userId = req.params.id;
   try {
@@ -22,7 +34,7 @@ app.get("/user/:id", async (req, res) => {
     if (!user) {
       return res.status(401).json("invalid crendentials")
     }
-    return res.status(201).json("succes");
+    return res.status(200).json("succes");
   } catch (err) {
     return res.status(500).json(err.message)
   }
@@ -60,8 +72,6 @@ app.post("/signin", async (req, res) => {
         .status(200).json({ 'id': saved._id, })
     }
     else {
-      console.log(user.password)
-      console.log(saved.password)
       return res.status(401).json("invalid crendentials")
     }
   } catch (err) {
