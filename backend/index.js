@@ -32,9 +32,33 @@ app.get("/user/:id", async (req, res) => {
   try {
     const user = await UserModel.findOne({ "_id": userId});
     if (!user) {
-      return res.status(401).json("invalid crendentials")
+      return res.status(404).json("User not ound")
     }
-    return res.status(200).json("succes");
+    return res.status(200).json(user.username);
+  } catch (err) {
+    return res.status(500).json(err.message)
+  }
+})
+app.delete("/user/:id", async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const user = await UserModel.findOne({ "_id": userId});
+    if (!user) {
+      return res.status(404).json("User not found")
+    }
+    else{
+      const listings = await ListingModel.find({ "useRef": user._id});
+      if(!listings){
+        await UserModel.findByIdAndDelete(userId);
+        return res.status(200).json(user.username);
+      }
+      else{
+        await ListingModel.deleteMany({ "useRef": user._id})
+        await UserModel.findByIdAndDelete(userId);
+        return res.status(200).json(user.username);
+      }
+    }
+    return res.status(200).json(user.username);
   } catch (err) {
     return res.status(500).json(err.message)
   }

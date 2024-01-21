@@ -1,7 +1,9 @@
     /profile
 
 edit user
-delete user
+delete user done but need
+    need alerts,
+    redirect
 list users properties
 edit and delete users properties
     
