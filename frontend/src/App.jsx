@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import React, { useState } from "react";
 import Create from "./pages/Create";
 import Listing from "./pages/Listing";
+import Error from "./pages/Error";
 
 export const Context = React.createContext();
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/create" element={<Create/>}/>
         <Route path="/listings/:id" element={<Listing/>}/>
+        <Route path="*" element={<Error />}/>
       </Routes>
       </Context.Provider>
     </BrowserRouter>

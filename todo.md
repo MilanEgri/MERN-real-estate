@@ -18,4 +18,5 @@ search
 /create
 need to add images,furnished,parking,type
 
-make error element
+add title to evry page separetly
+
