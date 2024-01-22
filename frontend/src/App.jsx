@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import Create from "./pages/Create";
 import Listing from "./pages/Listing";
 import Error from "./pages/Error";
+import Deleted from "./pages/Deleted";
 
 export const Context = React.createContext();
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/create" element={<Create/>}/>
+        <Route path="/deleted" element={<Deleted/>}/>
         <Route path="/listings/:id" element={<Listing/>}/>
         <Route path="*" element={<Error />}/>
       </Routes>
