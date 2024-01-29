@@ -60,7 +60,7 @@ const Create = () => {
         parking: true,
         beds,
         bathrooms: baths,
-        type: "rent",
+        type: "Rent",
         bedrooms: beds,
         price,
         useRef: user,

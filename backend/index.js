@@ -27,6 +27,17 @@ app.get("/listings/:id", async (req, res) => {
     return res.status(500).json(err.message)
   }
 })
+app.get("/listings", async (req, res) => {
+  try {
+    const listings = await ListingModel.find({});
+    if (!listings) {
+      return res.status(501).json("listings not exist")
+    }
+    return res.status(200).json(listings);
+  } catch (err) {
+    return res.status(500).json(err.message)
+  }
+})
 app.get("/user/:id", async (req, res) => {
   const userId = req.params.id;
   try {

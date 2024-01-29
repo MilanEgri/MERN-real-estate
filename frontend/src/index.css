@@ -227,3 +227,55 @@ textarea:focus{
   flex-direction: column;
   align-items: center;
 }
+.home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.listing{
+  display: flex;
+  border: 1px solid #555;
+  width: 700px;
+  height: 230px;
+  border-radius: 12px;
+  margin-top: 2rem;
+  gap: 1rem;
+  background-color: rgba(255 , 255, 255, 0.3)
+}
+.listing img{
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  width: 300px;
+  height: 230px;
+}
+.lisitig-datas-type{
+  color: #707070;
+  font-weight: lighter;
+  font-size: 14px;
+}
+.lisitig-datas-price{
+  color: #333;
+  font-weight: lighter;
+  font-size: 20px;
+}
+.lisitig-datas-name{
+  color: #333;
+  font-weight: lighter;
+  font-size: 16px;
+}
+.lisitig-datas-adress{
+  color: #707070;
+  font-weight: lighter;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lisitig-datas-b{
+  color: #333;
+  font-weight: lighter;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
