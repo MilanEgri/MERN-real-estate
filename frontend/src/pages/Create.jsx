@@ -9,6 +9,8 @@ const Create = () => {
   const [description, setDescription] = useState("");
   const [adress, setAdress] = useState("");
   const [rent, setRent] = useState(false);
+  const [hasParking, setParking] = useState(false);
+  const [hasFurnished, setFurnished] = useState(false);
   const [beds, setBeds] = useState("");
   const [baths, setBaths] = useState("");
   const [price, setPrice] = useState("");
@@ -47,6 +49,7 @@ const Create = () => {
   function clickSubmit(e) {
     e.preventDefault();
     console.log(rent);
+    const rentType = rent ? "Rent" : "Sell";
     fetch("/create", {
       method: "POST",
       headers: {
@@ -56,11 +59,11 @@ const Create = () => {
         name,
         description,
         adress,
-        furnished: true,
-        parking: true,
+        furnished: hasFurnished,
+        parking: hasParking,
         beds,
         bathrooms: baths,
-        type: "Rent",
+        type: rentType,
         bedrooms: beds,
         price,
         useRef: user,
@@ -137,6 +140,27 @@ const Create = () => {
             <span className="slider round"></span>
           </label>
           <span>Rent</span>
+        </div>
+        <div>
+          <div>
+            Furnished:
+            <input
+              type="checkbox"
+              id="furnished"
+              named="furnished"
+              value={hasFurnished}
+              onChange={(e) => setFurnished(e.target.value)}
+            />
+          </div>
+          <div>Parking: 
+          <input
+              type="checkbox"
+              id="parking"
+              named="parking"
+              value={hasParking}
+              onChange={(e) => setParking(e.target.value)}
+            />
+          </div>
         </div>
         <div className="create-rooms-and-price">
           <div className="create-rooms">

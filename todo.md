@@ -4,10 +4,6 @@ edit user
 list users properties
 edit and delete users properties
     
-    /home
-
-list properties at /home
-if click them open it
 
 /listing:id exist but dont have css
 
@@ -15,7 +11,7 @@ if click them open it
 search
 
 /create
-need to add images,furnished,parking,type
+need to add images
 
 add title to evry page separetly
 
