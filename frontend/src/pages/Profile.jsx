@@ -9,9 +9,9 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false);
   const [displayError, setDispalyError] = useState("none");
   const [displaySucces, setDispalySucces] = useState("none");
-  const [username,setUsername] = useState("")
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const deleteCookie = (name) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
   };
@@ -20,10 +20,10 @@ const Profile = () => {
     setUser(null);
     deleteCookie("token");
   }
-  function clearUseStates(){
+  function clearUseStates() {
     setUsername("");
     setEmail("");
-    setPassword("")
+    setPassword("");
   }
   let navigate = useNavigate();
   function handleDelete() {
@@ -39,7 +39,7 @@ const Profile = () => {
       }
     });
   }
-  function handleUpdate(){
+  function handleUpdate() {
     const id = localStorage.getItem("id");
     fetch(`/user/${id}`, {
       method: "PATCH",
@@ -49,13 +49,13 @@ const Profile = () => {
       body: JSON.stringify({
         username,
         email,
-        password
+        password,
       }),
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
           setDispalySucces("inline");
-          setUserData(username)
+          setUserData(username);
           clearUseStates();
           setTimeout(() => {
             setDispalySucces("none");
@@ -91,13 +91,31 @@ const Profile = () => {
     <div className="profile">
       {editMode && (
         <div className="profile-edite-profile">
-          <IoIosCloseCircle className="profile-edit-close" onClick={e => setEditMode(false)}/>
+          <IoIosCloseCircle
+            className="profile-edit-close"
+            onClick={(e) => setEditMode(false)}
+          />
           <div className="profile-edite-profile-in">
             <h1>Edit Profile</h1>
-            <input placeholder="Username" value={username} onChange={e =>setUsername(e.target.value)}/>
-            <input placeholder="Email" value={email} onChange={e =>setEmail(e.target.value)} />
-            <input placeholder="Password" type="password" value={password} onChange={e =>setPassword(e.target.value)}/>
-            <button className="sign-up-sign-up-button" onClick={handleUpdate}>Send</button>
+            <input
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className="sign-up-sign-up-button" onClick={handleUpdate}>
+              Send
+            </button>
             <p>If you don't want to change something leave it empty</p>
           </div>
         </div>
@@ -118,8 +136,17 @@ const Profile = () => {
       <Link to="/create" className="profile-create-button">
         Create listing
       </Link>
-      <button onClick={handleDelete}>Delete Profile</button>
-      <button onClick={e => setEditMode(true)}>Edit Profile</button>
+      <div className="profile-btns">
+        <button className="profile-delete-button" onClick={handleDelete}>
+          Delete Profile
+        </button>
+        <button
+          className="profile-edit-button"
+          onClick={(e) => setEditMode(true)}
+        >
+          Edit Profile
+        </button>
+      </div>
     </div>
   );
 };

@@ -212,10 +212,10 @@ textarea:focus {
   background-color: #ee5e4e;
   color: #fff;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 26px;
 }
 .profile-create-button {
-  padding: 10px 20px;
+  padding: 20px 40px;
   border-radius: 6px;
 }
 .error-contanier a:hover,
@@ -323,4 +323,25 @@ textarea:focus {
   width: 20px;
   color: #f44336;
   cursor: pointer;
+}
+.profile-btns{
+  display: flex;
+  margin-top: 1rem;
+  gap:3.8rem
+}
+.profile-delete-button{
+  background-color: transparent;
+  color: darkred;
+  cursor: pointer;
+}
+.profile-delete-button:hover{
+  color: red;
+}
+.profile-edit-button{
+  background-color: transparent;
+  color: #333;
+  cursor: pointer;
+}
+.profile-edit-button:hover{
+  color: #555;
 }

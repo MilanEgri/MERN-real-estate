@@ -1,6 +1,5 @@
     /profile
 
-edit user
 list users properties
 edit and delete users properties
     
