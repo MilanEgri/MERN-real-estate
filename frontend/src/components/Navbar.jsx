@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa'
 import { Context } from "../App";
 const Navbar = () => {
   const [user, setUser] = useContext(Context);
+  let navigate = useNavigate();
+
   useEffect(() => {
     const id = localStorage.getItem('id');
     setUser(id)
@@ -15,6 +17,7 @@ const Navbar = () => {
     localStorage.removeItem('id');
     setUser(null)
     deleteCookie('token');
+    navigate("/")
   }
   return (
     <header>
