@@ -30,6 +30,28 @@ app.get("/listings/:id", async (req, res) => {
     return res.status(500).json(err.message);
   }
 });
+app.get("/userlistings/:userid", async (req, res) => {
+  const id = req.params.userid;
+  try {
+    const listings = await ListingModel.find({ useRef: id });
+    if (!listings) {
+      return res.status(501).json("listing not exist");
+    } else {
+      listings.forEach((e) => {
+        const firstImageFilePath = e.imagerUrls[0];
+        const fullPath = `${__dirname}/uploads/${firstImageFilePath}`;
+        const fileData = fs.readFileSync(fullPath, "base64");
+        e.imagerUrls = {
+          filename: firstImageFilePath,
+          data: fileData.toString("base64"),
+        };
+      });
+    }
+    return res.status(200).json(listings);
+  } catch (err) {
+    return res.status(500).json(err.message);
+  }
+});
 app.get("/listings", async (req, res) => {
   try {
     let listings = await ListingModel.find({});
@@ -39,7 +61,7 @@ app.get("/listings", async (req, res) => {
       listings.forEach((e) => {
         const firstImageFilePath = e.imagerUrls[0];
         const fullPath = `${__dirname}/uploads/${firstImageFilePath}`;
-        const fileData = fs.readFileSync(fullPath, 'base64');
+        const fileData = fs.readFileSync(fullPath, "base64");
         e.imagerUrls = {
           filename: firstImageFilePath,
           data: fileData.toString("base64"),

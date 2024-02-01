@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../App";
 import { IoIosCloseCircle } from "react-icons/io";
+import Listing from "../components/Listing";
 
 const Profile = () => {
   const [user, setUser] = useContext(Context);
@@ -12,6 +13,7 @@ const Profile = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [listings,setListings] = useState([])
   const deleteCookie = (name) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
   };
@@ -84,7 +86,11 @@ const Profile = () => {
         res.json().then((data) => {
           setUserData(data);
           document.title = `MERN Estate - Welcome ${data}`;
-
+          fetch(`/userlistings/${id}`).then((res) => {
+            res.json().then((data) => {
+              setListings(data);
+            });
+          });
         });
       }
     });
@@ -149,6 +155,16 @@ const Profile = () => {
           Edit Profile
         </button>
       </div>
+        <h1>Listings</h1>
+        {listings ? (
+        <div>
+          {listings.map((e) => (
+            <Listing data={e} key={e._id} />
+          ))}
+        </div>
+      ) : (
+        <div>No listing found</div>
+      )}
     </div>
   );
 };
