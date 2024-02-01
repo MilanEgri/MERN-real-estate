@@ -10,7 +10,7 @@ const Listing = ({ data }) => {
       }
   return (
     <div className="listing" onClick={() => openListing(data._id)}>
-      <img src={image} />
+      <img src={`data:image/png;base64,${data.imagerUrls[0].data}`} />
       <div className="listing-datas">
         <p className="lisitig-datas-type">{data.type}</p>
         <p className="lisitig-datas-price">

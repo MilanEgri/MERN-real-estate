@@ -16,6 +16,7 @@ const Create = () => {
   const [price, setPrice] = useState("");
   const [displaySucces, setDispalySucces] = useState("none");
   const [displayError, setDispalyError] = useState("none");
+  const [image, setImage] = useState([]);
   const deleteCookie = (name) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
   };
@@ -31,6 +32,9 @@ const Create = () => {
     setBeds("");
     setBaths("");
     setPrice("");
+    setImage([]);
+    setParking(false);
+    setFurnished(false);
   }
   let navigate = useNavigate();
   useEffect(() => {
@@ -50,25 +54,23 @@ const Create = () => {
     e.preventDefault();
     console.log(rent);
     const rentType = rent ? "Rent" : "Sell";
+    const data = new FormData();
+    data.set("name", name);
+    data.set("description", description);
+    data.set("adress", adress);
+    data.set("furnished", hasFurnished);
+    data.set("parking", hasParking);
+    data.set("bathrooms", baths);
+    data.set("type", rentType);
+    data.set("bedrooms", beds);
+    data.set("price", price);
+    data.set("useRef", user);
+    for (let i = 0; i < image.length; i++) {
+      data.append("image", image[i]);
+    }
     fetch("/create", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        description,
-        adress,
-        furnished: hasFurnished,
-        parking: hasParking,
-        beds,
-        bathrooms: baths,
-        type: rentType,
-        bedrooms: beds,
-        price,
-        useRef: user,
-        imagerUrls: ["test", "test2"],
-      }),
+      body: data,
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
@@ -152,8 +154,9 @@ const Create = () => {
               onChange={(e) => setFurnished(e.target.value)}
             />
           </div>
-          <div>Parking: 
-          <input
+          <div>
+            Parking:
+            <input
               type="checkbox"
               id="parking"
               named="parking"
@@ -196,7 +199,13 @@ const Create = () => {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <input type="file" id="images" accept="images/*" multiple />
+        <input
+          type="file"
+          id="images"
+          accept="images/*"
+          multiple
+          onChange={(e) => setImage(e.target.files)}
+        />
         <button className="sign-up-sign-up-button">Submit</button>
       </form>
     </div>

@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const UserModel = require("./models/user.model");
 const ListingModel = require("./models/listing.model");
 const bcrypt = require("bcrypt");
+const multer = require("multer");
+const fs = require("fs");
+const upload = multer({ dest: "uploads/" });
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const PORT = 8000;
@@ -29,9 +32,19 @@ app.get("/listings/:id", async (req, res) => {
 });
 app.get("/listings", async (req, res) => {
   try {
-    const listings = await ListingModel.find({});
+    let listings = await ListingModel.find({});
     if (!listings) {
       return res.status(501).json("listings not exist");
+    } else {
+      listings.forEach((e) => {
+        const firstImageFilePath = e.imagerUrls[0];
+        const fullPath = `${__dirname}/uploads/${firstImageFilePath}`;
+        const fileData = fs.readFileSync(fullPath, 'base64');
+        e.imagerUrls = {
+          filename: firstImageFilePath,
+          data: fileData.toString("base64"),
+        };
+      });
     }
     return res.status(200).json(listings);
   } catch (err) {
@@ -118,8 +131,13 @@ app.delete("/user/:id", async (req, res) => {
     return res.status(500).json(err.message);
   }
 });
-app.post("/create", async (req, res) => {
-  const listing = req.body;
+app.post("/create", upload.array("image", 12), async (req, res) => {
+  let listing = req.body;
+  listing.imagerUrls = new Array();
+
+  req.files.forEach((e) => {
+    listing.imagerUrls.push(e.filename);
+  });
   try {
     const saved = await ListingModel.create(listing);
     return res.status(201).json(saved._id);
