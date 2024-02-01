@@ -23,7 +23,7 @@ const Navbar = () => {
     <header>
       <nav>
         <Link to="/">
-          <span>Home</span>
+          <span>MERN Estate</span>
         </Link>
         <form>
           <input type="text" placeholder="Search..." />
