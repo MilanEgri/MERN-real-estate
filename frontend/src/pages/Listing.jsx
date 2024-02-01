@@ -10,11 +10,13 @@ const Listing = () => {
     fetch(`/listings/${id}`).then((res) => {
       if (!res.ok) {
         setIsNotExist(true)
+        document.title = 'MERN Estate - Something Went Wrong';
+
       } else {
 
         res.json().then((data) => {
           setListingData(data)
-          console.log(data)
+          document.title = `MERN Estate - ${data.name}`;
         })
       }
 

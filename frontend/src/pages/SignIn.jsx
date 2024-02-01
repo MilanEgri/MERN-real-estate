@@ -10,9 +10,12 @@ const SignIn = () => {
   let navigate = useNavigate();
   useEffect(() =>{
     const id = localStorage.getItem('id');
+    document.title = 'MERN Estate - Sign In';
+
     if(id){
       navigate('/')
     }
+    
   },[])
   function clearUseStates() {
     setPassword("")

@@ -5,6 +5,7 @@ const Home = () => {
   const [listings, setListings] = useState(null);
 
   useEffect(() => {
+    document.title = 'MERN Estate';
     fetch(`/listings`).then((res) => {
       res.json().then((data) => {
         setListings(data);

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import errorImg from '../images/error.svg'
 import { Link } from 'react-router-dom'
 
 const Error = () => {
+  useEffect(() =>{
+    document.title = 'MERN Estate - Something Went Wrong';
 
+},[])
   return (
     <div className='error'>
       <div className='error-contanier'>

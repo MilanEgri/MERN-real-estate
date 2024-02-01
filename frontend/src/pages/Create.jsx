@@ -49,6 +49,7 @@ const Create = () => {
         navigate("/");
       }
     });
+    document.title = 'MERN Estate - Create listing';
   }, []);
   function clickSubmit(e) {
     e.preventDefault();

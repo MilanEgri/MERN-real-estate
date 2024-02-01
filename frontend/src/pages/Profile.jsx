@@ -83,6 +83,8 @@ const Profile = () => {
       } else {
         res.json().then((data) => {
           setUserData(data);
+          document.title = `MERN Estate - Welcome ${data}`;
+
         });
       }
     });

@@ -9,6 +9,8 @@ const SignUp = () => {
   const [displayError,setDispalyError] = useState("none")
   let navigate = useNavigate(); 
   useEffect(() =>{
+    document.title = 'MERN Estate - Sign Up';
+
     const id = localStorage.getItem('id');
     if(id){
       navigate('/')
