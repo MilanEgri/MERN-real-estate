@@ -9,8 +9,7 @@ edit and delete users properties
 
 search
 
-/create
-need to add images
+
 
 add title to evry page separetly
 
