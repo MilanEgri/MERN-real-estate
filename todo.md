@@ -11,6 +11,3 @@ search
 
 
 
-add title to evry page separetly
-
-
