@@ -1,5 +1,4 @@
 import React from "react";
-import image from "./300.webp";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaBed, FaBath } from "react-icons/fa";
 
