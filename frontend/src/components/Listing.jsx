@@ -4,8 +4,7 @@ import { FaBed, FaBath } from "react-icons/fa";
 
 const Listing = ({ data }) => {
     function openListing(URL) {
-        const currentPage = window.location.href;
-        window.open(`${currentPage}listings/${URL}`, "_blank");
+        window.open(`/listings/${URL}`, "_blank");
       }
   return (
     <div className="listing" onClick={() => openListing(data._id)}>
