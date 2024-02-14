@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa'
 import { Context } from "../App";
 const Navbar = () => {
   const [user, setUser] = useContext(Context);
+  const [search,setSearch] = useState('')
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,20 @@ const Navbar = () => {
     deleteCookie('token');
     navigate("/")
   }
+  function handleChange(e){
+    setSearch(e)
+    const URL = window.location.href.split('?')[0]
+    if(URL == 'http://localhost:3000/search'){
+    navigate(`/search?search=${e}`)
+  }
+
+  }
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      navigate(`/search?search=${search}`)
+    }
+  }
   return (
     <header>
       <nav>
@@ -26,8 +41,8 @@ const Navbar = () => {
           <span>MERN Estate</span>
         </Link>
         <form>
-          <input type="text" placeholder="Search..." />
-          <FaSearch style={{ "color": "#999" }} />
+          <input type="text" placeholder="Search..." value={search} onChange={(e) => handleChange(e.target.value)} onKeyDown={handleKeyDown}/>
+          <Link to={`/search?search=${search}`}><FaSearch style={{ "color": "#999" }}/></Link>
         </form>
         {user ? (
           <div className="navbar-sign-in-up">

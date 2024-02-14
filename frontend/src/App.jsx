@@ -10,6 +10,7 @@ import Create from "./pages/Create";
 import Listing from "./pages/Listing";
 import Error from "./pages/Error";
 import Deleted from "./pages/Deleted";
+import Search from "./pages/Search";
 
 export const Context = React.createContext();
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/create" element={<Create/>}/>
         <Route path="/deleted" element={<Deleted/>}/>
+        <Route path="/search" element={<Search/>}/>
         <Route path="/listings/:id" element={<Listing/>}/>
         <Route path="*" element={<Error />}/>
       </Routes>

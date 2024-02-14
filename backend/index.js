@@ -73,6 +73,33 @@ app.get("/listings", async (req, res) => {
     return res.status(500).json(err.message);
   }
 });
+app.get("/search/:key", async (req, res) => {
+  const key = req.params.key;
+  try {
+    let listings = await ListingModel.find({
+      $or: [
+        { name: { $regex: key, $options: "i" } },
+        { description: { $regex: key, $options: "i" } },
+      ],
+    });
+    if (!listings) {
+      return res.status(501).json("listings not exist");
+    } else {
+      listings.forEach((e) => {
+        const firstImageFilePath = e.imagerUrls[0];
+        const fullPath = `${__dirname}/uploads/${firstImageFilePath}`;
+        const fileData = fs.readFileSync(fullPath, "base64");
+        e.imagerUrls = {
+          filename: firstImageFilePath,
+          data: fileData.toString("base64"),
+        };
+      });
+    }
+    return res.status(200).json(listings);
+  } catch (err) {
+    return res.status(500).json(err.message);
+  }
+});
 app.get("/user/:id", async (req, res) => {
   const userId = req.params.id;
   try {
