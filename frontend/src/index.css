@@ -317,31 +317,69 @@ textarea:focus {
   text-align: left;
   align-items: left;
   justify-content: left;
-  margin-top: .5vh;
+  margin-top: 0.5vh;
   margin-left: 48vw;
   height: 20px;
   width: 20px;
   color: #f44336;
   cursor: pointer;
 }
-.profile-btns{
+.profile-btns {
   display: flex;
   margin-top: 1rem;
-  gap:3.8rem
+  gap: 3.8rem;
 }
-.profile-delete-button{
+.profile-delete-button {
   background-color: transparent;
   color: darkred;
   cursor: pointer;
 }
-.profile-delete-button:hover{
+.profile-delete-button:hover {
   color: red;
 }
-.profile-edit-button{
+.profile-edit-button {
   background-color: transparent;
   color: #333;
   cursor: pointer;
 }
-.profile-edit-button:hover{
+.profile-edit-button:hover {
   color: #555;
+}
+.listing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+.single-listing {
+  display: flex;
+  flex-direction: column;
+  width: 1024px;
+  min-height: 100vh;
+  background-color: #fefefe;
+  padding-top: 2rem;
+  color: #403b45;
+  align-items: center;
+}
+.single-listing h1 {
+  font-size: 25px;
+}
+.single-listing img {
+  width: 924px;
+  height: 520px;
+}
+
+.single-listing-description {
+  font-size: 16px;
+  max-width: 920px;
+  font-weight: lighter;
+}
+.single-listing-data{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+.single-listing-description-title{
+  text-align: left;
 }

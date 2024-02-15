@@ -25,6 +25,13 @@ app.get("/listings/:id", async (req, res) => {
     if (!listing) {
       return res.status(501).json("listing not exist");
     }
+      const firstImageFilePath = listing.imagerUrls[0];
+      const fullPath = `${__dirname}/uploads/${firstImageFilePath}`;
+      const fileData = fs.readFileSync(fullPath, "base64");
+      listing.imagerUrls = {
+        filename: firstImageFilePath,
+        data: fileData.toString("base64"),
+    }
     return res.status(200).json(listing);
   } catch (err) {
     return res.status(500).json(err.message);
