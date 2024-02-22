@@ -1,7 +1,7 @@
 [![LinkedIn][linkedin-shield-milan]][linkedin-url-milan]
 # MERN Estate - A Full-Stack Real-estate Platform
 
-MERN Blog is a full-stack blogging platform developed using the MERN stack (MongoDB, Express, React, Node.js). It provides a seamless experience for both bloggers and readers.
+About MERN Estate is a full-stack real-estate platform developed using the MERN stack (MongoDB, Express, React, Node.js). It provides a seamless experience for both buyers and sellers
 ## Features
 
 - **User Authentication**: Secure user registration and login system.
